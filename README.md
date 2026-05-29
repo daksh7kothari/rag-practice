@@ -59,6 +59,16 @@ VITE_API_BASE_URL=http://localhost:8000
 3. Deploy with `vercel.json` at the repo root.
 4. Add the `groq_api_key` environment variable in Vercel.
 
+## Render note
+
+If you test the backend on Render from the repo root, use:
+
+```bash
+pip install -r requirements.txt
+```
+
+The root `requirements.txt` just forwards to `backend/requirements.txt`.
+
 ## API
 
 - `GET /api/health`
