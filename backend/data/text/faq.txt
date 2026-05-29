@@ -30,3 +30,92 @@ A: Prepare class 11 and 12 basics, fundamentals of electronics, aptitude, and co
 Q: What should I prepare for coding?
 A: Prepare logic building, basic algorithms, and problem-solving. Some questions may be objective and some may require written solutions.
 
+Q: What domains are available in SRM Team Robocon?
+A: Software, Electronics, Mechanical, and Management.
+
+Q: Is prior robotics experience required?
+A: No. Candidates are selected based on aptitude, fundamentals, willingness to learn, and problem-solving skills.
+
+Q: Should I bring a laptop for the recruitment test?
+A: Candidates are advised to bring a fully charged laptop unless otherwise instructed by the recruitment team.
+
+Q: Is a laptop mandatory for Electronics candidates?
+A: A laptop is recommended as some assessments may involve technical or programming-related activities.
+
+Q: What programming languages should Software candidates know?
+A: Basic knowledge of Python, C++, or C is beneficial.
+
+Q: Is C programming important?
+A: Yes. Understanding variables, loops, functions, arrays, pointers, and structures can be useful.
+
+Q: Is Python important?
+A: Yes. Python is widely used for automation, computer vision, machine learning, and robotics applications.
+
+Q: What topics should Software candidates prepare?
+A: Basic programming, problem solving, data structures, algorithms, Linux fundamentals, Git, and robotics basics.
+
+Q: What topics should Electronics candidates prepare?
+A: Basic electronics, circuits, Ohm's law, sensors, microcontrollers, communication protocols, and troubleshooting.
+
+Q: What topics should Mechanical candidates prepare?
+A: CAD, manufacturing processes, machine elements, mechanisms, and engineering fundamentals.
+
+Q: What topics should Management candidates prepare?
+A: Communication, leadership, organization, sponsorship, content creation, and event management.
+
+Q: Is web development useful in Robocon?
+A: Web development can be useful for creating dashboards, monitoring systems, internal tools, and team websites.
+
+Q: What web development topics should I learn?
+A: HTML, CSS, JavaScript, React, APIs, and basic backend concepts.
+
+Q: Is React used in robotics?
+A: React can be used for robot dashboards, telemetry visualization, monitoring systems, and internal web tools.
+
+Q: What software tools are commonly used?
+A: Python, C++, ROS, OpenCV, Git, Linux, VS Code, and simulation tools.
+
+Q: What is ROS?
+A: ROS (Robot Operating System) is a framework used for robot software development.
+
+Q: What is OpenCV?
+A: OpenCV is a computer vision library used for image processing and object detection.
+
+Q: What is YOLO?
+A: YOLO is a real-time object detection model commonly used in robotics and computer vision.
+
+Q: What is embedded programming?
+A: Embedded programming involves writing software that runs on microcontrollers and embedded devices.
+
+Q: What microcontrollers are commonly used?
+A: STM32, ESP32, Arduino, Teensy, and other embedded platforms.
+
+Q: What communication protocols should I know?
+A: UART, SPI, I2C, CAN, and Ethernet.
+
+Q: What is PCB design?
+A: PCB design is the process of designing circuit boards for electronic systems.
+
+Q: What sensors are commonly used in robots?
+A: IMUs, encoders, cameras, LiDAR, ultrasonic sensors, and limit switches.
+
+Q: What is computer vision?
+A: Computer vision enables robots to understand and process visual information from cameras.
+
+Q: What is autonomous navigation?
+A: Autonomous navigation allows robots to move and perform tasks without human intervention.
+
+Q: What qualities are expected from candidates?
+A: Curiosity, consistency, teamwork, ownership, discipline, and willingness to learn.
+
+Q: What happens` after the written test?
+A: Shortlisted candidates may be invited for interviews or further evaluation rounds.
+
+Q: Will beginners be trained?
+A: Yes. Selected candidates receive guidance, workshops, and mentoring from senior members.
+
+Q: What is the main goal of SRM Team Robocon?
+A: To design competitive robots while helping students develop technical and leadership skills.
+
+Q: How can I prepare for recruitment?
+A: Revise fundamentals of your preferred domain, practice problem solving, and learn basic robotics concepts.

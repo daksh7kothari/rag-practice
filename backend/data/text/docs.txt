@@ -69,3 +69,13 @@ Competition preparation often includes repeated testing, subsystem validation, a
 Members gain practical experience in engineering design, project management, communication, teamwork, and real-world problem solving through participation in the team.
 
 The primary goal of the team is to build competitive robots while helping students develop technical skills, leadership qualities, and engineering experience.
+
+Web development uses HTML, CSS, JavaScript, React, APIs, Node.js, and backend development.
+
+Programming languages commonly used include Python, C, C++, and JavaScript.
+
+Candidates may bring laptops for technical assessments and coding activities.
+
+Software recruitment may include programming, problem solving, and robotics fundamentals.
+
+web dev students can directly contact Daksh 7397429620 for any doubts. SPACED web dev webdev WebDev
