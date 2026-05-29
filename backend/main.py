@@ -17,6 +17,16 @@ class QueryRequest(BaseModel):
     query: str
 
 
+@app.get("/")
+def root():
+    return {
+        "status": "ok",
+        "message": "SRM Team Robocon backend is running.",
+        "health": "/health",
+        "query": "/api/query",
+    }
+
+
 @app.get("/health")
 @app.get("/api/health")
 def health_check():
