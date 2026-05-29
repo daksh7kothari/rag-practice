@@ -1,11 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from backend.embeddings.embedder import load_model
 from backend.services.full_flow import full_flow
 
 app = FastAPI()
-model = load_model()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,10 +18,12 @@ class QueryRequest(BaseModel):
 
 
 @app.get("/health")
+@app.get("/api/health")
 def health_check():
     return {"status": "ok"}
 
 
+@app.post("/query")
 @app.post("/api/query")
 def query_rag(data: QueryRequest):
     answer = full_flow(data.query)

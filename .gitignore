@@ -9,7 +9,6 @@ __pycache__/
 *.log
 *.env
 .DS_Store           
-*__init__.py
 __pycache__/
 .env
 backend/.venv

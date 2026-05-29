@@ -1,22 +1,36 @@
-# RAG Practice
+# SRMTEAMROBOCON-AI
 
-Frontend chat UI for a Retrieval-Augmented Generation demo.
+RAG chatbot with a Vite frontend and a FastAPI backend.
 
-## What it does
+## Vercel-only deployment
 
-- Full-screen chat interface built with React + Vite
-- Sends user questions to a backend at `POST /api/query`
-- Displays assistant responses in a simple message thread
-- Uses a black, high-contrast visual theme with sharp corners
+This repo is set up for a single Vercel project using Services:
 
-## Project Layout
+- `frontend/rag` is the web service mounted at `/`
+- `backend/main.py` is the API service mounted at `/api`
 
-- `frontend/rag` - React/Vite app
-- `frontend/rag/src/App.jsx` - main chat UI
-- `frontend/rag/src/App.css` - chat layout and styling
-- `frontend/rag/src/index.css` - global theme and font setup
+The routing is defined in [`vercel.json`](vercel.json).
 
-## Run It
+## What changed for Vercel
+
+- The frontend now defaults to the same-origin API path `/api`
+- The backend exposes both `/query` and `/api/query`
+- Model loading in the backend is lazy so cold starts are a little less painful
+
+## Important caveat
+
+This is still a heavy Python backend because it uses:
+
+- `sentence-transformers`
+- `torch`
+- `chromadb`
+- `groq`
+
+That means a Vercel-only deployment is an experiment, not the most reliable production choice.
+
+## Local development
+
+Frontend:
 
 ```bash
 cd frontend/rag
@@ -24,18 +38,30 @@ npm install
 npm run dev
 ```
 
-## Backend
-
-The frontend expects a backend at `http://localhost:8000` by default.
-
-Set a different API URL with:
+Backend:
 
 ```bash
-VITE_API_BASE_URL=http://your-backend-host:8000
+cd backend
+pip install -r requirements.txt
+uvicorn backend.main:app --reload --port 8000
 ```
 
-## Notes
+If you run locally, set the frontend API URL to your backend:
 
-- The chat input is sent to `/api/query`
-- The UI is intentionally minimal and full-screen
-- Corners are sharp, not rounded
+```bash
+VITE_API_BASE_URL=http://localhost:8000
+```
+
+## Vercel deployment
+
+1. Import the GitHub repo into Vercel.
+2. Set the project framework preset to `Services`.
+3. Deploy with `vercel.json` at the repo root.
+4. Add the `groq_api_key` environment variable in Vercel.
+
+## API
+
+- `GET /api/health`
+- `POST /api/query`
+
+The frontend sends chat requests to `/api/query`.
