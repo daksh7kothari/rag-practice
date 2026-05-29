@@ -1,21 +1,21 @@
-from sentence_transformers import SentenceTransformer
-
 def load_model():
-    return SentenceTransformer("all-MiniLM-L6-v2")
+    """
+    Lightweight compatibility shim.
+
+    The production-like version of this repo used sentence-transformers, but the
+    Render test path now uses simple text retrieval to stay within a small memory
+    budget.
+    """
+    return None
 
 
 def embed_chunks(model, chunks):
-    return model.encode(chunks)
+    return list(chunks)
 
 
 def embed_query(model, query):
-    return model.encode(query)
+    return query
+
 
 if __name__ == "__main__":
-    model = load_model()
-    print("Model loaded successfully.") 
-    # Example usage    chunks = ["This is the first chunk.", "This is the second chunk."]
-    query = "What is the first chunk about?"
-    query_embedding = embed_query(model, query)
-    print(query_embedding)
-    print("Query embedding generated successfully.")    
+    print("Lightweight embedder shim loaded successfully.")

@@ -1,5 +1,3 @@
-from backend.ingestion.pdf_loader import extract_pdf_text
-
 def remove_page_numbers(text:str) -> str:
     lines = text.splitlines()
     cleaned_lines = []

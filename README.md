@@ -2,10 +2,14 @@
 
 RAG chatbot with a Vite frontend and a FastAPI backend.
 
-## Vercel-only deployment
+## Deployment Paths
 
-This repo is set up for a single Vercel project using Services:
+This repo supports two paths:
 
+- Vercel Services for the frontend + backend experiment
+- Render for the lightweight backend test deploy
+
+For the Vercel path:
 - `frontend/rag` is the web service mounted at `/`
 - `backend/main.py` is the API service mounted at `/api`
 
@@ -15,18 +19,14 @@ The routing is defined in [`vercel.json`](vercel.json).
 
 - The frontend now defaults to the same-origin API path `/api`
 - The backend exposes both `/query` and `/api/query`
-- Model loading in the backend is lazy so cold starts are a little less painful
+- The backend uses a lightweight text search path for the test deploy so it fits small Render instances better
 
 ## Important caveat
 
-This is still a heavy Python backend because it uses:
+This repo now avoids the heavyweight embedding/vector stack at runtime for the test deploy.
 
-- `sentence-transformers`
-- `torch`
-- `chromadb`
-- `groq`
-
-That means a Vercel-only deployment is an experiment, not the most reliable production choice.
+The assistant still calls Groq for the final answer, but retrieval is now based on a small
+text corpus in `backend/data/text/doubts.txt`.
 
 ## Local development
 
@@ -61,13 +61,18 @@ VITE_API_BASE_URL=http://localhost:8000
 
 ## Render note
 
-If you test the backend on Render from the repo root, use:
+Use [`render.yaml`](render.yaml) to deploy the backend on Render from the repo root.
+If you want to set it up manually, the commands are:
 
 ```bash
 pip install -r requirements.txt
+uvicorn backend.main:app --host 0.0.0.0 --port $PORT
 ```
 
-The root `requirements.txt` just forwards to `backend/requirements.txt`.
+The root `requirements.txt` forwards to `backend/requirements.txt`.
+
+This setup is intentionally lightweight so it has a much better chance of staying under
+Render's small memory limit during a test deploy.
 
 ## API
 

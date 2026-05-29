@@ -1,12 +1,3 @@
-import nltk
-from nltk.tokenize import sent_tokenize
-from backend.ingestion.cleaner import clean_text
-from backend.ingestion.pdf_loader import extract_pdf_text
-
-
-# Run once if punkt not downloaded
-#nltk.download('punkt')
-
 def chunk_text(clean_text: str, chunk_size: int = 10, overlap: int = 2) -> list[str]:
     """
     Splits cleaned text into overlapping sentence-based chunks.
@@ -20,7 +11,13 @@ def chunk_text(clean_text: str, chunk_size: int = 10, overlap: int = 2) -> list[
         list[str]: List of chunked text strings
     """
 
-    sentences = sent_tokenize(clean_text)
+    import re
+
+    sentences = [
+        sentence.strip()
+        for sentence in re.split(r"(?<=[.!?])\s+", clean_text)
+        if sentence.strip()
+    ]
 
     if not sentences:
         return []

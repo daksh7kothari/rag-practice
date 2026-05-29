@@ -2,9 +2,3 @@ fastapi
 uvicorn[standard]
 python-dotenv
 groq
-chromadb
-sentence-transformers
-transformers
-torch
-pymupdf
-nltk

@@ -1,73 +1,145 @@
+from functools import lru_cache
 from pathlib import Path
-
-import chromadb
+import re
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-DB_DIR = BASE_DIR / "chroma_db"
+CORPUS_PATH = BASE_DIR / "data" / "text" / "doubts.txt"
 
-client = chromadb.PersistentClient(path=str(DB_DIR))
+STOPWORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "at",
+    "can",
+    "for",
+    "from",
+    "how",
+    "i",
+    "in",
+    "is",
+    "it",
+    "me",
+    "my",
+    "of",
+    "on",
+    "or",
+    "the",
+    "to",
+    "was",
+    "what",
+    "when",
+    "where",
+    "which",
+    "who",
+    "will",
+    "with",
+    "you",
+    "your",
+    "tomorrow",
+    "today",
+    "day",
+}
 
-# Create or get collection
-collection = client.get_or_create_collection(name="jain_knowledge")
+
+def _tokenize(text: str) -> set[str]:
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", text.lower())
+        if token not in STOPWORDS
+    }
 
 
-def store_chunks(chunks: list[str], embeddings) -> bool:
+def _normalize_line(line: str) -> str:
+    return re.sub(r"\s+", " ", line.strip())
+
+
+@lru_cache(maxsize=1)
+def _load_records() -> list[str]:
+    if not CORPUS_PATH.exists():
+        return []
+
+    records: list[str] = []
+    previous_line = ""
+
+    for raw_line in CORPUS_PATH.read_text(encoding="utf-8", errors="ignore").splitlines():
+        line = _normalize_line(raw_line)
+        if not line:
+            previous_line = ""
+            continue
+
+        if line.startswith(">"):
+            answer = line.lstrip(">").strip()
+            if previous_line:
+                records.append(f"{previous_line}\n{answer}")
+            else:
+                records.append(answer)
+            previous_line = ""
+            continue
+
+        if previous_line:
+            records.append(previous_line)
+
+        previous_line = line
+
+    if previous_line:
+        records.append(previous_line)
+
+    # Keep the source order but drop obvious duplicates.
+    seen = set()
+    deduped: list[str] = []
+    for record in records:
+        key = record.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(record)
+
+    return deduped
+
+
+def store_chunks(chunks: list[str], embeddings=None) -> bool:
     """
-    Store chunk text + embeddings in Chroma
+    Compatibility shim for the older ingestion flow.
+
+    The Render-friendly version keeps the source corpus in text form instead of
+    persisting embeddings to a local vector database.
     """
 
-    ids = [f"chunk_{i}" for i in range(len(chunks))]
-
-    collection.add(
-        ids=ids,
-        documents=chunks,
-        embeddings=embeddings.tolist()
-    )
-
-    print(f"Stored {len(chunks)} chunks in Chroma.")
-    return True
+    return bool(chunks)
 
 
-def search(query_embedding, top_k: int = 5) -> list[str]:
+def search(query: str, top_k: int = 5) -> list[str]:
     """
-    Search similar chunks
+    Search the local text corpus using lightweight keyword overlap.
     """
 
-    results = collection.query(
-        query_embeddings=[query_embedding.tolist()],
-        n_results=top_k
-    )
+    query_tokens = _tokenize(query)
+    records = _load_records()
+    if not records:
+        return []
 
-    documents = results.get("documents", [])
-    return documents[0] if documents else []
+    scored: list[tuple[float, int, str]] = []
+    for index, record in enumerate(records):
+        record_tokens = _tokenize(record)
+        if not record_tokens:
+            continue
+
+        overlap = len(query_tokens & record_tokens)
+        if overlap == 0:
+            continue
+
+        number_bonus = 0.25 if any(char.isdigit() for char in query) and any(
+            char.isdigit() for char in record
+        ) else 0.0
+        length_bonus = min(len(record) / 2000.0, 0.25)
+        score = overlap + number_bonus + length_bonus
+        scored.append((score, index, record))
+
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [record for _, _, record in scored[:top_k]]
+
 
 if __name__ == "__main__":
-    try:
-        client.reset()  # Clear existing data for testing
-        print("Chroma database reset successfully.")
-    except Exception as e:
-        print(f"Error resetting Chroma database: {e}")
-    try:
-        from backend.embeddings.embedder import load_model, embed_chunks, embed_query
-        from backend.ingestion.chunker import chunk_text
-        from backend.ingestion.cleaner import clean_text
-        from backend.ingestion.pdf_loader import extract_pdf_text
-    except ImportError as e:
-        print(f"Error importing modules: {e}")
-        exit(1)
-        
-    model = load_model()
-
-    raw = extract_pdf_text("backend/data/raw/jain.pdf")
-    cleaned = clean_text(raw)
-    chunks = chunk_text(cleaned)
-
-    embeddings = embed_chunks(model, chunks)
-
-    store_chunks(chunks, embeddings)
-
-    # query = embed_query(model, "What is btech credit system?")
-    # results = search(query)
-
-    # print(results)
+    print(f"Loaded {len(_load_records())} lightweight records from {CORPUS_PATH}")

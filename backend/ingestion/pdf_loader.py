@@ -1,6 +1,11 @@
-import fitz
-
 def extract_pdf_text(pdf_path:str) -> str:
+    try:
+        import fitz
+    except ImportError as exc:
+        raise RuntimeError(
+            "PyMuPDF is not installed in the lightweight deployment."
+        ) from exc
+
     doc = fitz.open(pdf_path)
     text_parts = []
     page_count = 0
