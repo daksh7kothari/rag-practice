@@ -26,7 +26,7 @@ The routing is defined in [`vercel.json`](vercel.json).
 This repo now avoids the heavyweight embedding/vector stack at runtime for the test deploy.
 
 The assistant still calls Groq for the final answer, but retrieval is now based on a small
-text corpus in `backend/data/text/doubts.txt`.
+text corpus in `backend/data/text/`.
 
 ## Local development
 
@@ -73,6 +73,16 @@ The root `requirements.txt` forwards to `backend/requirements.txt`.
 
 This setup is intentionally lightweight so it has a much better chance of staying under
 Render's small memory limit during a test deploy.
+
+## Editing Knowledge
+
+Update these files locally and push the repo when you want the bot to learn new content:
+
+- `backend/data/text/faq.txt` for simple FAQ entries
+- `backend/data/text/docs.txt` for pasted document text
+
+Use blank lines between entries or paragraphs. The backend automatically loads every `.txt`
+file in `backend/data/text/`, with FAQ files ranked first.
 
 ## API
 

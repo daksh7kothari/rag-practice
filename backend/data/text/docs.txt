@@ -1,0 +1,71 @@
+# SRM Team Robocon Overview
+
+SRM Team Robocon is the official robotics team of SRM Institute of Science and Technology. The team participates in national and international robotics competitions and develops robots to solve competition-specific challenges.
+
+The team consists of software, electronics, mechanical, and management domains that collaborate throughout the robot development lifecycle.
+
+The software domain focuses on programming, algorithms, computer vision, autonomous navigation, ROS, path planning, embedded programming, machine learning, sensor fusion, localization, and control systems.
+
+The electronics domain focuses on PCB design, microcontrollers, motor drivers, power electronics, battery management, communication protocols, sensor integration, debugging, and electrical system reliability.
+
+The mechanical domain focuses on CAD design, mechanism development, structural design, manufacturing, assembly, transmission systems, pneumatics, material selection, and robot optimization.
+
+The management domain focuses on sponsorship, social media, content creation, documentation, logistics, finance, outreach, and event coordination.
+
+The team regularly works with technologies such as Python, C++, Arduino, STM32, ESP32, ROS, OpenCV, YOLO, Fusion 360, SolidWorks, Git, Linux, and various robotics simulation tools.
+
+Robocon robots often use sensors such as IMUs, encoders, cameras, ultrasonic sensors, LiDAR sensors, limit switches, and proximity sensors.
+
+Common actuators used in robotics include DC motors, servo motors, stepper motors, pneumatic cylinders, and linear actuators.
+
+Autonomous robots rely on perception, decision making, localization, path planning, and control algorithms.
+
+Computer vision is used for object detection, target tracking, marker detection, localization, obstacle detection, and autonomous navigation.
+
+Embedded systems are responsible for sensor reading, motor control, communication, and real-time decision making.
+
+Communication protocols commonly used in robotics include UART, I2C, SPI, CAN, Ethernet, and wireless communication methods.
+
+Control systems commonly used in robotics include PID control, feedback loops, motion profiling, trajectory following, and state machines.
+
+Mechanical design often involves linkages, gear trains, belt drives, chain drives, lead screws, rack and pinion systems, and custom fabricated mechanisms.
+
+Robot development involves ideation, design, prototyping, manufacturing, testing, debugging, iteration, and final validation.
+
+Members are expected to work collaboratively across domains rather than operating in isolation.
+
+Problem solving, teamwork, ownership, discipline, consistency, and willingness to learn are highly valued within the team.
+
+New members are typically trained through workshops, projects, mentoring sessions, and hands-on robot development activities.
+
+The recruitment process may include aptitude tests, technical assessments, interviews, group discussions, practical tasks, or domain-specific evaluations.
+
+Candidates are not always expected to possess prior robotics experience. Strong fundamentals and learning attitude are often considered more important.
+
+Software candidates may be asked questions related to programming, data structures, algorithms, computer vision, Linux, Git, Python, C++, or robotics fundamentals.
+
+Electronics candidates may be asked questions related to circuits, sensors, microcontrollers, communication protocols, and troubleshooting.
+
+Mechanical candidates may be asked questions related to CAD, manufacturing processes, machine elements, mechanisms, and engineering fundamentals.
+
+Management candidates may be asked questions related to communication, organization, sponsorship, content creation, event planning, and leadership.
+
+Robocon competitions emphasize innovation, engineering excellence, strategy, teamwork, reliability, and efficient problem solving.
+
+Team members often participate in brainstorming sessions, design reviews, technical discussions, testing sessions, and competition preparation activities.
+
+A successful robot must balance speed, accuracy, robustness, maintainability, safety, and compliance with competition rules.
+
+Documentation is an important part of engineering and includes design reports, technical specifications, manufacturing drawings, testing records, and competition submissions.
+
+Safety practices are critical during manufacturing, electrical integration, testing, and competition operation.
+
+Version control systems such as Git are commonly used to manage software development and collaboration.
+
+Simulation tools may be used to validate robot designs before physical manufacturing.
+
+Competition preparation often includes repeated testing, subsystem validation, autonomous tuning, driver practice, and failure analysis.
+
+Members gain practical experience in engineering design, project management, communication, teamwork, and real-world problem solving through participation in the team.
+
+The primary goal of the team is to build competitive robots while helping students develop technical skills, leadership qualities, and engineering experience.

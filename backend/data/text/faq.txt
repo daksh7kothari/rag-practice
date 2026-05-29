@@ -1,0 +1,32 @@
+# SRM Team Robocon FAQ
+
+Q: What is SRM Team Robocon?
+A: SRM Team Robocon is the official robotics team of SRM Institute of Science and Technology. The team works on robotics, software, electronics, mechanical design, and related project work.
+
+Q: What are the main domains in the team?
+A: The main domains are software, electronics, mechanical, and management.
+
+Q: What kind of questions are expected in recruitment?
+A: The test usually covers basics, aptitude, domain fundamentals, and problem-solving. The exact questions may vary by domain and year.
+
+Q: Do I need to bring a laptop for the test?
+A: Only some domains may require a laptop, depending on the instructions shared by the team.
+
+Q: Where is the recruitment venue?
+A: The venue shared in the group was UB 5th floor.
+
+Q: What are the test timings?
+A: The timings shared in the group were 5:15 PM to 6:45 PM.
+
+Q: Can I write the test on either day if I selected one domain?
+A: Yes, if you selected one domain, you can usually attend on either of the two days, based on the team instructions shared in the group.
+
+Q: Can I write the test for two domains?
+A: Yes, candidates can usually write for up to two domains, depending on the recruitment rules shared by the team.
+
+Q: What should I prepare for electronics?
+A: Prepare class 11 and 12 basics, fundamentals of electronics, aptitude, and core concepts related to the domain.
+
+Q: What should I prepare for coding?
+A: Prepare logic building, basic algorithms, and problem-solving. Some questions may be objective and some may require written solutions.
+

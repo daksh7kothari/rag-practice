@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
+const API_QUERY_URL = `${API_BASE_URL.replace(/\/$/, '')}/api/query`
 
 const seedMessages = [
   {
@@ -34,7 +35,7 @@ function App() {
     setIsLoading(true)
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/query`, {
+      const res = await fetch(API_QUERY_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,13 +43,23 @@ function App() {
         body: JSON.stringify({ query: userMessage.content }),
       })
 
+      if (!res.ok) {
+        const errorText = await res.text()
+        throw new Error(`Backend responded with ${res.status}: ${errorText}`)
+      }
+
       const data = await res.json()
+      const answer =
+        typeof data.answer === 'string' && data.answer.trim().length > 0
+          ? data.answer
+          : `Backend returned no answer. Check VITE_API_BASE_URL (${API_QUERY_URL}).`
+
       setMessages((current) => [
         ...current,
         {
           id: Date.now() + 1,
           role: 'assistant',
-          content: data.answer ?? 'No answer returned.',
+          content: answer,
         },
       ])
     } catch (error) {
@@ -58,7 +69,7 @@ function App() {
         {
           id: Date.now() + 1,
           role: 'assistant',
-          content: 'Something went wrong while contacting the backend.',
+          content: `Something went wrong while contacting the backend. Check VITE_API_BASE_URL (${API_QUERY_URL}).`,
         },
       ])
     } finally {
