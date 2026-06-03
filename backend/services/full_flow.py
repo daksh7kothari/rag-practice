@@ -7,7 +7,7 @@ def full_flow(query: str) -> str:
     """
     Full flow: Search corpus -> Build prompt -> Generate response
     """
-    retrieved_chunks = retrieve(query, top_k=5)
+    retrieved_chunks = retrieve(query, top_k=3)
     prompt = generate_prompt(retrieved_chunks, query)
     response = generate_response(prompt)
     return response

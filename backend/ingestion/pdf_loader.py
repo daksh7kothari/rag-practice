@@ -3,7 +3,7 @@ def extract_pdf_text(pdf_path:str) -> str:
         import fitz
     except ImportError as exc:
         raise RuntimeError(
-            "PyMuPDF is not installed in the lightweight deployment."
+            "PyMuPDF is not installed. Run `pip install -r backend/requirements.txt`."
         ) from exc
 
     doc = fitz.open(pdf_path)

@@ -19,14 +19,14 @@ The routing is defined in [`vercel.json`](vercel.json).
 
 - The frontend now defaults to the same-origin API path `/api`
 - The backend exposes both `/query` and `/api/query`
-- The backend uses a lightweight text search path for the test deploy so it fits small Render instances better
+- The backend retrieves answers from PDF chunks stored in a persistent Chroma DB
 
 ## Important caveat
 
-This repo now avoids the heavyweight embedding/vector stack at runtime for the test deploy.
+This repo uses Chroma DB, but PDF extraction and chunking happen locally during ingestion.
 
 The assistant still calls Groq for the final answer, but retrieval is now based on a small
-text corpus in `backend/data/text/`.
+persistent vector database in `backend/chroma_db/`.
 
 ## Local development
 
@@ -76,13 +76,21 @@ Render's small memory limit during a test deploy.
 
 ## Editing Knowledge
 
-Update these files locally and push the repo when you want the bot to learn new content:
+Add or replace PDFs in `backend/data/raw/`, rebuild Chroma locally, then push the repo.
+At runtime, the backend reads only the stored Chroma DB and answers from those PDF chunks.
 
-- `backend/data/text/faq.txt` for simple FAQ entries
-- `backend/data/text/docs.txt` for pasted document text
+Rebuild the local Chroma DB:
 
-Use blank lines between entries or paragraphs. The backend automatically loads every `.txt`
-file in `backend/data/text/`, with FAQ files ranked first.
+```bash
+python -m backend.services.ingestion_service
+```
+
+Then commit and push the updated `backend/chroma_db/` folder.
+
+Optional chunk controls:
+
+- `PDF_CHUNK_SIZE=10`
+- `PDF_CHUNK_OVERLAP=2`
 
 ## API
 

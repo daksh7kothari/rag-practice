@@ -2,7 +2,7 @@ from backend.vectorstore.chroma_store import search
 
 def retrieve(query, top_k: int = 5) -> list[str]:
     """
-    Retrieve similar chunks from the lightweight text corpus.
+    Retrieve similar chunks from the PDF corpus.
 
     Args:
         query: The user query string.

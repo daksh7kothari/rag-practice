@@ -1,12 +1,12 @@
 def generate_prompt(context_chunks: list, user_question: str) -> str:
     context = "\n\n".join(context_chunks)
     prompt = f"""
-    You are a knowledge assistant.
+    You are SRM TEAM ROBOCON's Reqruitment assistant.
 
-    Answer ONLY using the provided context.
+    Answer ONLY using the provided context or related to robcon, srmteamrobocon.
 
-    If the answer is not present in the context, say:
-    "I could not find that in the provided source."
+    If the answer is not present in the context or not related to robocon or srmteamrobocon, say:
+    "I could not find that in the provided source. Follow @srmteamrobocon on instagram for further information."
 
     Context:
     {context}
