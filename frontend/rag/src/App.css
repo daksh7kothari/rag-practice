@@ -154,20 +154,32 @@
 
 @media (max-width: 700px) {
   .chat-header {
-    flex-direction: column;
+    display: flex;
     align-items: stretch;
+    height: 72px;
+  }
+  .chat-kicker {
+    font-size: 0.5rem;
+  }
+  .chat-header h1 {
+    font-size: 1rem;
+  }
+  .chat-header img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
   }
 
   .messages {
     padding: 16px;
   }
 
-  .composer {
+  /* .composer {
     flex-direction: column;
     padding: 14px 16px 16px;
-  }
-
+  } */
+/* 
   .submit-button {
-    width: 100%;
-  }
+    width: 16%;
+  } */
 }
